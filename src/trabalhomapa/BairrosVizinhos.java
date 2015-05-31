@@ -2,9 +2,9 @@ package trabalhomapa;
 
 public class BairrosVizinhos {
     
-    private Bairro bairro;
-    private int distancia;
-    private int heuristica;
+    protected Bairro bairro;
+    protected int distancia;
+    protected int heuristica;
 
     public BairrosVizinhos(Bairro bairro, int distancia, int heuristica) {
         this.bairro = bairro;
