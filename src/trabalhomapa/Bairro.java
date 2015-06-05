@@ -6,8 +6,23 @@ import java.util.List;
 public class Bairro {
     
     protected String nome;
+    protected int heuristica;
     protected Bairro pai = null;
     protected List<BairrosVizinhos> vizinhos;
+
+    public Bairro(String nome, int heuristica, List<BairrosVizinhos> vizinhos) {
+         this.nome = nome;
+         this.heuristica = heuristica;
+         this.vizinhos = vizinhos;
+    }
+    
+    public void insereVizinhos(Bairro bairro2, int dist){    
+        BairrosVizinhos viz1, viz2;
+        viz1 = new BairrosVizinhos(bairro2, dist);
+        viz2 = new BairrosVizinhos(this, dist);
+        this.vizinhos.add(viz1);
+        bairro2.vizinhos.add(viz2);
+    }
 
     public Bairro(String nome) {
         this.nome = nome;

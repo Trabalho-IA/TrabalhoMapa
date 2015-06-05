@@ -4,12 +4,10 @@ public class BairrosVizinhos {
     
     protected Bairro bairro;
     protected int distancia;
-    protected int heuristica;
 
-    public BairrosVizinhos(Bairro bairro, int distancia, int heuristica) {
+    public BairrosVizinhos(Bairro bairro, int distancia) {
         this.bairro = bairro;
         this.distancia = distancia;
-        this.heuristica = heuristica;
     }
 
     public Bairro getBairro() {
@@ -26,13 +24,5 @@ public class BairrosVizinhos {
 
     public void setDistancia(int distancia) {
         this.distancia = distancia;
-    }
-
-    public int getHeuristica() {
-        return heuristica;
-    }
-
-    public void setHeuristica(int heuristica) {
-        this.heuristica = heuristica;
     }
 }
