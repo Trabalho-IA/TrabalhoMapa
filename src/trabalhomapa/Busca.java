@@ -92,7 +92,7 @@ public class Busca {
         ArrayList<Bairro> frontier = new ArrayList<>();
         ArrayList<Bairro> explored = new ArrayList<>();
         Bairro daVez;
-        frontier.add(origin);
+        frontier = insGul(frontier, origin);
         while(!frontier.isEmpty()){
             daVez = frontier.get(0);
             frontier.remove(0);
@@ -110,7 +110,7 @@ public class Busca {
             for (BairrosVizinhos vizinho : daVez.vizinhos) {
                 if (!explored.contains(vizinho.bairro) && !frontier.contains(vizinho.bairro)) {
                     vizinho.getBairro().pai = daVez;
-                    frontier.add(vizinho.getBairro());
+                    frontier = insGul(frontier, vizinho.getBairro());
                 } else if (buscaGul(frontier, vizinho) > 0) {
                     vizinho.getBairro().pai = daVez;
                     frontier.set(buscaGul(frontier, vizinho), daVez);
@@ -125,6 +125,18 @@ public class Busca {
             if(lista.get(i).equals(este.bairro)) return i;
         }
         return -1;
+    }
+    
+    private ArrayList<Bairro> insGul(ArrayList<Bairro> lista, Bairro est){
+        int pos = -1;
+        for (int i = 0; i < lista.size(); i++) {
+            if(lista.get(i).heuristica >  est.heuristica){
+                lista.add(i, est);
+                return lista;
+            }
+        }
+        lista.add(est);
+        return lista;
     }
     
     private int buscaAEst(List<BairrosVizinhos> lista, BairrosVizinhos este){
