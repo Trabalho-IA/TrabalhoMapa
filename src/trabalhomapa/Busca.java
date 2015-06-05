@@ -100,6 +100,7 @@ public class Busca {
                 Bairro pai = daVez;
                 while(!pai.nome.equals(origin.nome)){
                     caminho.add(pai.nome);
+                    System.out.println(pai.nome);
                     pai = pai.getPai();
                 }
                 caminho.add(pai.nome);
@@ -108,8 +109,10 @@ public class Busca {
             explored.add(daVez);
             for (BairrosVizinhos vizinho : daVez.vizinhos) {
                 if (!explored.contains(vizinho.bairro) && !frontier.contains(vizinho.bairro)) {
+                    vizinho.getBairro().pai = daVez;
                     frontier.add(vizinho.getBairro());
                 } else if (buscaGul(frontier, vizinho) > 0) {
+                    vizinho.getBairro().pai = daVez;
                     frontier.set(buscaGul(frontier, vizinho), daVez);
                 }
             }
